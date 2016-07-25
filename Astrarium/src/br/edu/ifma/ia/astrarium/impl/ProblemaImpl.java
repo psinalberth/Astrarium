@@ -58,8 +58,7 @@ public class ProblemaImpl implements Problema  {
 		
 		mapa.getUltimoPonto().conectar(acao.getPonto());
 		
-		if (acao.getPonto().temLigacao()) {
-			
+		if (!acao.getPonto().temLigacao()) {
 			estadoAtual = tmp;
 		}
 		

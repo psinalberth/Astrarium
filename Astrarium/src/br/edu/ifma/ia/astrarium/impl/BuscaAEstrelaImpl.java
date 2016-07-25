@@ -18,6 +18,7 @@ public class BuscaAEstrelaImpl implements Busca {
 	public BuscaAEstrelaImpl(Problema problema) {
 		this.problema = problema;
 		this.fronteira = new ArrayList<Estado>();
+		this.visitados = new ArrayList<Estado>();
 	}
 	
 	public Problema getProblema() {
