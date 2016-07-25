@@ -53,8 +53,17 @@ public class ProblemaImpl implements Problema  {
 	@Override
 	public Estado resultado(Acao acao, Estado estado) {
 		
-		Mapa mapa = (Mapa) getEstadoAtual();		
+		Mapa mapa = (Mapa) estadoAtual();		
 		Mapa tmp = mapa.replica();
+		
+		mapa.getUltimoPonto().conectar(acao.getPonto());
+		
+		if (acao.getPonto().temLigacao()) {
+			
+			estadoAtual = tmp;
+		}
+		
+		tmp.getUltimoPonto().distancia(acao.getPonto());
 		
 		return estadoAtual;
 	}
