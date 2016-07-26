@@ -8,6 +8,7 @@ public class Ponto2D {
 	private int y;
 	private Acao conectar;
 	private Ponto2D link;
+	private Ponto2D pai;
 	
 	public Ponto2D(int x, int y) {	
 		this.x = x;
@@ -42,8 +43,20 @@ public class Ponto2D {
 		return link;
 	}
 	
+	public void setPai(Ponto2D pai) {
+		this.pai = pai;
+	}
+	
+	public Ponto2D getPai() {
+		return pai;
+	}
+	
 	public boolean temLigacao() {
 		return link != null;
+	}
+	
+	public boolean temPai() {
+		return pai != null;
 	}
 	
 	@Override

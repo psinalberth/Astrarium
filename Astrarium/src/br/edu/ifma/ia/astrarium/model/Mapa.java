@@ -72,4 +72,9 @@ public class Mapa implements Estado {
 		
 		return temp;
 	}
+	
+	@Override
+	public String toString() {
+		return getUltimoPonto().toString();
+	}
 }

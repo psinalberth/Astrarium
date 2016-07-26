@@ -24,7 +24,6 @@ public class ProblemaImpl implements Problema  {
 	public Set<Acao> acoes(Estado estado) {
 		
 		Mapa tmp = (Mapa) estado;
-		Ponto2D ultimo = tmp.getUltimoPonto();
 		Set<Acao> acoes = new HashSet<Acao>();
 		
 		for (Ponto2D ponto : tmp.getPontos()) {
@@ -56,13 +55,37 @@ public class ProblemaImpl implements Problema  {
 		Mapa mapa = (Mapa) estadoAtual();		
 		Mapa tmp = mapa.replica();
 		
-		mapa.getUltimoPonto().conectar(acao.getPonto());
+		Ponto2D ultimo = mapa.getUltimoPonto();
 		
-		if (!acao.getPonto().temLigacao()) {
+		System.out.println("ultimo=" + ultimo);
+		
+		double distanciaAtual = mapa.getUltimoPonto().distancia(acao.getPonto());
+		
+//		System.out.println(distanciaAtual);
+		
+		if (distanciaAtual > 0) {
+			
+			mapa.getUltimoPonto().setLink(acao.getPonto());
+			tmp.setUltimoPonto(acao.getPonto());
+			
+			if (!tmp.getUltimoPonto().temPai()) {
+				
+				tmp.getUltimoPonto().setPai(mapa.getUltimoPonto());
+				estadoAtual = tmp;
+			}
+			
+//			System.out.println("sucessor=" + tmp.getUltimoPonto());
+		}
+		
+		/*mapa.getUltimoPonto().conectar(acao.getPonto());
+		
+		if (!acao.getPonto().temPai()) {
 			estadoAtual = tmp;
 		}
 		
-		tmp.getUltimoPonto().distancia(acao.getPonto());
+		tmp.getUltimoPonto().distancia(acao.getPonto());*/
+		
+//		System.out.println("A: " +((Mapa)estadoAtual).getUltimoPonto());
 		
 		return estadoAtual;
 	}

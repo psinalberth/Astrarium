@@ -16,6 +16,7 @@ public class Main {
 		Mapa mapa = new Mapa(DIMENSAO);
 		
 		Ponto2D p = new Ponto2D(4, 1);
+		p.setPai(null);
 		
 		mapa.adicionaPonto(new Ponto2D(0, 1));
 		mapa.adicionaPonto(new Ponto2D(2, 7));
